@@ -4,11 +4,11 @@ require_relative "test_helper"
 
 class BrowserTest < Minitest::Spec
   def setup
-    @browser = Lightpanda::Browser.new
+    @browser = Lightpanda::Browser.new(port: find_available_port)
   end
 
   def teardown
-    @browser.quit
+    @browser&.quit
   end
 
   it "navigates to a URL" do

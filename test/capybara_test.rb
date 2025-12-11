@@ -8,10 +8,17 @@ class CapybaraTest < Minitest::Spec
   include Capybara::DSL
 
   def setup
-    Capybara.default_driver = :lightpanda
+    @port = find_available_port
+
+    Capybara.register_driver(:lightpanda_test) do |app|
+      Lightpanda::Capybara::Driver.new(app, port: @port)
+    end
+
+    Capybara.default_driver = :lightpanda_test
   end
 
   def teardown
+    page.driver.quit if page.driver.respond_to?(:quit)
     Capybara.reset_sessions!
     Capybara.use_default_driver
   end

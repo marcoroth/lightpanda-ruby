@@ -2,8 +2,13 @@
 
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 
-require "lightpanda"
+require "minitest/spec"
 require "maxitest/autorun"
+require "lightpanda"
 
-system("pkill -f lightpanda 2>/dev/null")
-sleep 0.5
+def find_available_port
+  server = TCPServer.new("127.0.0.1", 0)
+  port = server.addr[1]
+  server.close
+  port
+end
