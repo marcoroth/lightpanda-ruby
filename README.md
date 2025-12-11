@@ -1,6 +1,6 @@
 # Lightpanda
 
-Ruby client for [Lightpanda](https://lightpanda.io) headless browser via CDP (Chrome DevTools Protocol).
+Ruby client for the [Lightpanda](https://lightpanda.io) headless browser via CDP (Chrome DevTools Protocol).
 
 Lightpanda is a fast, lightweight headless browser built for web automation, AI agents, and scraping. This gem provides a high-level Ruby API to control Lightpanda, similar to [Ferrum](https://github.com/rubycdp/ferrum) for Chrome.
 
