@@ -1,0 +1,3 @@
+module Lightpanda
+  VERSION: String
+end
