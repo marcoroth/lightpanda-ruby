@@ -106,13 +106,11 @@ module Lightpanda
             break if @status == :closed || @status == :closing
 
             begin
-              ready = IO.select([@socket], nil, nil, 0.1)
-
-              next unless ready
+              next unless @socket.wait_readable(0.1)
 
               data = @socket.readpartial(4096)
               @driver.parse(data)
-            rescue EOFError, IOError, Errno::ECONNRESET
+            rescue IOError
               @status = :closed
               break
             end
@@ -124,9 +122,7 @@ module Lightpanda
         started_at = Time.now
 
         while @status != :open && Time.now - started_at < @options.timeout
-          ready = IO.select([@socket], nil, nil, 0.1)
-
-          next unless ready
+          next unless @socket.wait_readable(0.1)
 
           begin
             data = @socket.readpartial(4096)

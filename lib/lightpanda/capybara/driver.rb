@@ -8,6 +8,8 @@ module Lightpanda
       attr_reader :app, :options
 
       def initialize(app, options = {})
+        super()
+
         @app = app
         @options = options
         @browser = nil

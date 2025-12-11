@@ -33,7 +33,7 @@ module Lightpanda
       @traffic.clear
     end
 
-    def wait_for_idle(timeout: 5, connections: 0)
+    def wait_for_idle(timeout: 5, connections: 0) # rubocop:disable Naming/PredicateMethod
       started_at = Time.now
 
       while Time.now - started_at < timeout

@@ -81,29 +81,32 @@ module Lightpanda
       started_at = Time.now
       output = +""
 
-      while Time.now - started_at < @options.process_timeout
-        ready = IO.select([@stdout_r, @stderr_r], nil, nil, 0.1)
+      catch(:ready) do
+        while Time.now - started_at < @options.process_timeout
+          ready = IO.select([@stdout_r, @stderr_r], nil, nil, 0.1)
 
-        next unless ready
+          next unless ready
 
-        ready[0].each do |io|
-          chunk = io.read_nonblock(1024)
-          output << chunk
+          ready[0].each do |io|
+            chunk = io.read_nonblock(1024)
+            output << chunk
 
-          if (match = output.match(READY_PATTERN))
-            @ws_url = "ws://#{match[1]}/"
-            return
+            if (match = output.match(READY_PATTERN))
+              @ws_url = "ws://#{match[1]}/"
+              throw(:ready)
+            end
+          rescue IO::WaitReadable
+            # No data available yet
+          rescue EOFError
+            # Pipe closed
           end
-        rescue IO::WaitReadable
-          # No data available yet
-        rescue EOFError
-          # Pipe closed
         end
+
+        stop
+
+        raise ProcessTimeoutError,
+              "Lightpanda failed to start within #{@options.process_timeout} seconds.\nOutput: #{output}"
       end
-
-      stop
-
-      raise ProcessTimeoutError, "Lightpanda failed to start within #{@options.process_timeout} seconds.\nOutput: #{output}"
     end
 
     def cleanup_pipes

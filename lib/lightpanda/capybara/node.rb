@@ -222,7 +222,7 @@ module Lightpanda
         end
       end
 
-      def set_text_value(value)
+      def set_text_value(value) # rubocop:disable Naming/AccessorMethodName
         evaluate_on(<<~JS)
           this.focus();
           this.value = #{value.to_s.inspect};

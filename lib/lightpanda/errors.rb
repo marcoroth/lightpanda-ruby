@@ -25,7 +25,8 @@ module Lightpanda
 
     def initialize(response)
       @class_name = response.dig("exceptionDetails", "exception", "className")
-      @message = response.dig("exceptionDetails", "exception", "description") || response.dig("exceptionDetails", "text")
+      @message = response.dig("exceptionDetails", "exception",
+                              "description") || response.dig("exceptionDetails", "text")
 
       super(@message)
     end
