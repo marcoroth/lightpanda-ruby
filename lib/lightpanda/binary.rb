@@ -39,9 +39,9 @@ module Lightpanda
         find || download
       end
 
-      def run(*args)
+      def run(*)
         binary = find_or_download
-        stdout, stderr, status = Open3.capture3(binary, *args)
+        stdout, stderr, status = Open3.capture3(binary, *)
 
         Result.new(stdout: stdout, stderr: stderr, status: status)
       rescue Errno::ENOENT
