@@ -1,4 +1,4 @@
-# Lightpanda
+# Lightpanda for Ruby
 
 Ruby client for the [Lightpanda](https://lightpanda.io) headless browser via CDP (Chrome DevTools Protocol).
 
@@ -10,7 +10,7 @@ Lightpanda is a fast, lightweight headless browser built for web automation, AI 
 - CDP (Chrome DevTools Protocol) client
 - Capybara driver included
 - Auto-downloads Lightpanda binary if not found
-- Ruby 3.1+
+- Ruby 3.2+
 
 ## Installation
 

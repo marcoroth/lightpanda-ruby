@@ -12,8 +12,8 @@ require_relative "lightpanda/browser"
 
 module Lightpanda
   class << self
-    def new(**options)
-      Browser.new(**options)
+    def new(**)
+      Browser.new(**)
     end
   end
 end
