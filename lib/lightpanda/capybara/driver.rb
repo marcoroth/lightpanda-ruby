@@ -16,7 +16,14 @@ module Lightpanda
       end
 
       def browser
+        @browser = nil if @browser && !browser_alive?
         @browser ||= Lightpanda::Browser.new(@options)
+      end
+
+      def browser_alive?
+        @browser.client && !@browser.client.closed?
+      rescue StandardError
+        false
       end
 
       def visit(url)
