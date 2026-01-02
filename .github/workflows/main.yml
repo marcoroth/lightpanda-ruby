@@ -30,7 +30,7 @@ jobs:
           bundler-cache: true
 
       - name: Run the tests
-        run: bundle exec mtest
+        run: bundle exec minitest
 
       - name: Run rubocop
         run: bundle exec rubocop

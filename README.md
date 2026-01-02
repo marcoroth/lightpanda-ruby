@@ -187,7 +187,7 @@ Lightpanda is a lightweight browser with some limitations compared to Chrome:
 
 ```bash
 bundle install
-bundle exec mtest
+bundle exec minitest
 ```
 
 ## License
