@@ -27,16 +27,28 @@ GEM
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     matrix (0.4.3)
-    maxitest (5.8.0)
-      minitest (>= 5.14.0, < 5.26.0)
+    maxitest (6.2.0)
+      minitest (>= 5.20.0, < 5.28.0)
     mini_mime (1.1.5)
-    minitest (5.25.5)
+    minitest (5.27.0)
     mustermann (3.0.4)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.7.5)
-    nokogiri (1.18.10-arm64-darwin)
+    nokogiri (1.19.0-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.10-x86_64-linux-gnu)
+    nokogiri (1.19.0-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.19.0-arm-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.19.0-arm-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.19.0-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.0-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.0-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.19.0-x86_64-linux-musl)
       racc (~> 1.4)
     parallel (1.27.0)
     parser (3.3.10.0)
@@ -80,7 +92,7 @@ GEM
     tilt (2.6.1)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
-    unicode-emoji (4.1.0)
+    unicode-emoji (4.2.0)
     websocket-driver (0.8.0)
       base64
       websocket-extensions (>= 0.1.0)
@@ -89,13 +101,20 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
-  arm64-darwin-24
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
+  x86_64-darwin
   x86_64-linux
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   capybara (~> 3.0)
   lightpanda!
-  maxitest (~> 5.0)
+  maxitest (~> 6.0)
   puma (~> 6.0)
   rake (~> 13.0)
   rubocop (~> 1.21)
