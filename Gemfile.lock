@@ -27,10 +27,11 @@ GEM
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     matrix (0.4.3)
-    maxitest (6.2.0)
-      minitest (>= 5.20.0, < 5.28.0)
+    maxitest (7.1.0)
+      minitest (>= 6.0.0, < 6.1.0)
     mini_mime (1.1.5)
-    minitest (5.27.0)
+    minitest (6.0.1)
+      prism (~> 1.5)
     mustermann (3.0.4)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.7.5)
@@ -54,7 +55,7 @@ GEM
     parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
-    prism (1.6.0)
+    prism (1.7.0)
     public_suffix (7.0.0)
     puma (6.6.1)
       nio4r (~> 2.0)
@@ -114,7 +115,7 @@ PLATFORMS
 DEPENDENCIES
   capybara (~> 3.0)
   lightpanda!
-  maxitest (~> 6.0)
+  maxitest (~> 7.0)
   puma (~> 6.0)
   rake (~> 13.0)
   rubocop (~> 1.21)
