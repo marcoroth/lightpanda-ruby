@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Ruby client for the Lightpanda headless browser via Chrome DevTools Protocol."
   spec.description = <<~DESC.tr("\n", " ").strip
-    High-level Ruby API to control Lightpanda browser. Lightpanda is a fast,
+    High-level Ruby API to control the Lightpanda browser. Lightpanda is a fast,
     lightweight headless browser built for web automation, AI agents, and scraping.
     This gem provides CDP-based browser control similar to Ferrum.
   DESC
