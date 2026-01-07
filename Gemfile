@@ -5,6 +5,7 @@ source "https://rubygems.org"
 gemspec
 
 gem "capybara", "~> 3.0"
+gem "irb", "~> 1.16"
 gem "maxitest", "~> 7.0"
 gem "puma", "~> 6.0"
 gem "rake", "~> 13.0"
