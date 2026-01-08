@@ -2,6 +2,7 @@
 
 require_relative "lightpanda/version"
 require_relative "lightpanda/errors"
+require_relative "lightpanda/configuration"
 require_relative "lightpanda/options"
 require_relative "lightpanda/binary"
 require_relative "lightpanda/process"
@@ -14,6 +15,14 @@ module Lightpanda
   class << self
     def new(**)
       Browser.new(**)
+    end
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def configure
+      yield(configuration)
     end
   end
 end

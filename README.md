@@ -128,6 +128,20 @@ html = Lightpanda::Binary.fetch("https://example.com")
 # => "<!DOCTYPE html><html>..."
 ```
 
+### Global Configuration
+
+```ruby
+Lightpanda.configure do |config|
+  config.binary_path = "/path/to/lightpanda"
+end
+```
+
+If not explicitly set, the binary path is auto-discovered on first use and cached for subsequent calls. The discovery order is:
+
+1. `LIGHTPANDA_PATH` environment variable
+2. `lightpanda` executable in your `PATH`
+3. Auto-download to `~/.cache/lightpanda/lightpanda` (or `$XDG_CACHE_HOME/lightpanda/lightpanda`)
+
 ### Capybara Integration
 
 **Basic usage**
