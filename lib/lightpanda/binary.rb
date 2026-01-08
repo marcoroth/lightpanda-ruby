@@ -48,6 +48,12 @@ module Lightpanda
         raise BinaryNotFoundError, "Lightpanda binary not found"
       end
 
+      def exec(*)
+        binary = find_or_download
+
+        Kernel.exec(binary, *)
+      end
+
       def fetch(url)
         result = run("fetch", "--dump", url)
         raise BinaryError, result.stderr unless result.success?
