@@ -1,13 +1,9 @@
-name: Build Gems
+name: Publish Gem
 
 on:
   workflow_dispatch:
   release:
     types: [published]
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -24,7 +20,6 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.4"
           bundler-cache: true
 
       - name: Build gem
@@ -43,7 +38,7 @@ jobs:
     name: Push gem with trusted publishing
     if: github.event_name == 'release' && github.repository_owner == 'marcoroth'
     needs: build
-    timeout-minutes: 30
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -54,18 +49,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Vendor the attestation patch from rubygems/release-gem
       - name: Vendor release-gem patch
         uses: actions/checkout@v4
         with:
           repository: rubygems/release-gem
-          ref: 1c162a739e8b4cb21a676e97b087e8268d8fc40b # v1.1.2
+          ref: a25424ba2ba8b387abc8ef40807c2c85b96cbe32 # v1.1.1
           path: .github/_release-gem
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.4"
-          bundler-cache: false
+          bundler-cache: true
 
       - name: Download gem artifacts
         uses: actions/download-artifact@v4
@@ -78,6 +73,7 @@ jobs:
 
       - name: Push gem with Sigstore attestation
         env:
+          # Preload the attestation patch so `gem push` generates & attaches the bundle
           RUBYOPT: "-r${{ github.workspace }}/.github/_release-gem/rubygems-attestation-patch.rb"
         run: |
           cd pkg
