@@ -48,6 +48,12 @@ module Lightpanda
         raise BinaryNotFoundError, "Lightpanda binary not found"
       end
 
+      def exec(*)
+        binary = find_or_download
+
+        Kernel.exec(binary, *)
+      end
+
       def fetch(url)
         result = run("fetch", "--dump", url)
         raise BinaryError, result.stderr unless result.success?
@@ -105,10 +111,29 @@ module Lightpanda
         ENV["PATH"].to_s.split(File::PATH_SEPARATOR).each do |dir|
           path = File.join(dir, "lightpanda")
 
-          return path if File.executable?(path)
+          return path if File.executable?(path) && native_binary?(path)
         end
 
         nil
+      end
+
+      def native_binary?(path)
+        header = File.binread(path, 4)
+
+        return true if elf_binary?(header)
+        return true if mach_o_binary?(header)
+
+        false
+      rescue StandardError
+        false
+      end
+
+      def elf_binary?(header)
+        header.start_with?("\x7FELF")
+      end
+
+      def mach_o_binary?(header)
+        header.start_with?("\xCF\xFA\xED\xFE")
       end
 
       def normalize_arch(arch)
