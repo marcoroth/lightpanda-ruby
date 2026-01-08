@@ -55,7 +55,7 @@ module Lightpanda
           url: params.dig("request", "url"),
           method: params.dig("request", "method"),
           timestamp: params["timestamp"],
-          response: nil
+          response: nil,
         }
       end
 
@@ -67,7 +67,7 @@ module Lightpanda
         request[:response] = {
           status: params.dig("response", "status"),
           headers: params.dig("response", "headers"),
-          mime_type: params.dig("response", "mimeType")
+          mime_type: params.dig("response", "mimeType"),
         }
       end
     end

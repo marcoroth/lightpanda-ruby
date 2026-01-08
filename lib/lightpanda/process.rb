@@ -69,11 +69,14 @@ module Lightpanda
     end
 
     def build_args
-      %W[
-        serve
-        --host #{@options.host}
-        --port #{@options.port}
-        --log_level info
+      [
+        "serve",
+        "--host",
+        @options.host.to_s,
+        "--port",
+        @options.port.to_s,
+        "--log_level",
+        "info",
       ]
     end
 

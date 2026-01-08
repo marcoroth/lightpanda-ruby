@@ -34,7 +34,7 @@ module Lightpanda
           host: host,
           port: port,
           timeout: timeout,
-          browser_path: browser_path
+          browser_path: browser_path,
         }
       end
     end

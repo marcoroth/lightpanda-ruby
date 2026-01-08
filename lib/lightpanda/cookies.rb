@@ -24,7 +24,7 @@ module Lightpanda
         value: value,
         path: path,
         secure: secure,
-        httpOnly: http_only
+        httpOnly: http_only,
       }
 
       params[:domain] = domain if domain

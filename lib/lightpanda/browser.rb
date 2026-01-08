@@ -8,7 +8,7 @@ module Lightpanda
 
     attr_reader :options, :process, :client, :target_id, :session_id
 
-    delegate %i[on off] => :client
+    delegate [:on, :off] => :client
 
     def initialize(options = {})
       @options = Options.new(options)
@@ -157,7 +157,7 @@ module Lightpanda
           y: 0,
           width: content_size["width"],
           height: content_size["height"],
-          scale: 1
+          scale: 1,
         }
       end
 

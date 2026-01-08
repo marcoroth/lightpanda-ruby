@@ -25,9 +25,9 @@ module Lightpanda
     GITHUB_RELEASE_URL = "https://github.com/lightpanda-io/browser/releases/download/nightly"
 
     PLATFORMS = {
-      %w[x86_64 linux] => "lightpanda-x86_64-linux",
-      %w[aarch64 darwin] => "lightpanda-aarch64-macos",
-      %w[arm64 darwin] => "lightpanda-aarch64-macos"
+      ["x86_64", "linux"] => "lightpanda-x86_64-linux",
+      ["aarch64", "darwin"] => "lightpanda-aarch64-macos",
+      ["arm64", "darwin"] => "lightpanda-aarch64-macos",
     }.freeze
 
     class << self

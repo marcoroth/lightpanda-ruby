@@ -39,7 +39,7 @@ module Lightpanda
         window_size: window_size,
         browser_path: browser_path,
         headless: headless,
-        ws_url: ws_url
+        ws_url: ws_url,
       }
     end
   end
