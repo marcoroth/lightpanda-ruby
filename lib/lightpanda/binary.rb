@@ -32,7 +32,7 @@ module Lightpanda
 
     class << self
       def path
-        find_or_download
+        Lightpanda.configuration.binary_path ||= find_or_download
       end
 
       def find_or_download
@@ -40,8 +40,7 @@ module Lightpanda
       end
 
       def run(*)
-        binary = find_or_download
-        stdout, stderr, status = Open3.capture3(binary, *)
+        stdout, stderr, status = Open3.capture3(path, *)
 
         Result.new(stdout: stdout, stderr: stderr, status: status)
       rescue Errno::ENOENT
@@ -49,9 +48,7 @@ module Lightpanda
       end
 
       def exec(*)
-        binary = find_or_download
-
-        Kernel.exec(binary, *)
+        Kernel.exec(path, *)
       end
 
       def fetch(url)
