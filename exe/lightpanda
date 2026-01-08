@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative "../lib/lightpanda"
+
+args = ARGV.empty? ? ["help"] : ARGV
+result = Lightpanda::Binary.run(*args)
+
+$stdout.write(result.stdout)
+$stderr.write(result.stderr)
+
+exit(result.exit_code)
